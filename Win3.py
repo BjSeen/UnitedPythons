@@ -2,6 +2,7 @@ import time
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 from statsmodels.tsa.arima.model import ARIMA
 
@@ -12,12 +13,23 @@ data = pd.read_csv("Data/TrainingData/training.csv", header=0, sep=';')
 del data['DateTime']
 
 
-#ARIMA
-trainData = data['Current']
-model = ARIMA(trainData, order=(5,1,0))
-model_fit = model.fit()
-print(model_fit.summary())
-output = model_fit.forecast()
+# #ARIMA
+# data = pd.read_csv("Data/TestingData/testing9.csv", header=0, sep=';')
+# trainData = data['Current']
+
+# tempData = trainData
+# for i in tqdm(range(300)):
+#     tempData = tempData.tail(50)
+#     model = ARIMA(tempData, order=(5,1,0))
+#     model_fit = model.fit()
+#     output = model_fit.forecast()
+#     tempData = tempData.append(output)
+
+# trainData.plot()
+# tempData.plot()
+# plt.show()
+
+
 
 corr = data.corr(method='kendall')
 fig = plt.figure()
