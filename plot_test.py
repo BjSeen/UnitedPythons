@@ -30,15 +30,15 @@ fig, axes = plt.subplots(nrows=5, ncols = 5)
 
 for i in range(len(test_list)):
     if i < 5:
-        test_list[i].plot(y = ["Rms","Current"], use_index=True, ax=axes[0,i])
+        test_list[i].plot(y = ["Current"], use_index=True, ax=axes[0,i])
     if i> 4 and i < 10:
-        test_list[i].plot(y = ["Rms","Current"], use_index=True, ax=axes[1,i-5])
+        test_list[i].plot(y = ["Current"], use_index=True, ax=axes[1,i-5])
     if i> 9 and i < 15:
-        test_list[i].plot(y = ["Rms","Current"], use_index=True, ax=axes[2,i-10])
+        test_list[i].plot(y = ["Current"], use_index=True, ax=axes[2,i-10])
     if i> 14 and i < 20:
-        test_list[i].plot(y = ["Rms","Current"], use_index=True, ax=axes[3,i-15])
+        test_list[i].plot(y = ["Current"], use_index=True, ax=axes[3,i-15])
     if i> 19 and i < 25:
-        test_list[i].plot(y = ["Rms","Current"], use_index=True, ax=axes[4,i-20])
+        test_list[i].plot(y = ["Current"], use_index=True, ax=axes[4,i-20])
 
     
 
