@@ -22,6 +22,9 @@ data["LiftWorkingPosition"] = data["LiftWorkingPosition"].astype(int)
 data['CurrentMA'] = data['Current'].rolling(window=5).mean()
 data['CurrentMA10'] = data['Current'].rolling(window=10).mean()
 
+#Plot some variables
+# data.iloc[0:1000].plot(y = ["Current",  "CurrentMA", "CurrentMA10"], use_index=True)
+
 #Detect Extremes
 ilocs_min = argrelextrema(data.Current.values, np.less_equal, order=20)[0]
 ilocs_max = argrelextrema(data.Current.values, np.greater_equal, order=20)[0]
@@ -31,7 +34,7 @@ data.Current.plot(figsize=(20,8), alpha=.3)
 # filter prices that are peaks and plot them differently to be visable on the plot
 data.iloc[ilocs_max].Current.plot(style='.', lw=10, color='red', marker="v")
 data.iloc[ilocs_min].Current.plot(style='.', lw=10, color='green', marker="^")
-
+plt.show()
 
 def consecutive(data, stepsize=1):
     return np.split(data, np.where(np.diff(data) != stepsize)[0]+1)
@@ -65,17 +68,17 @@ print(len(max_list), len(max_list_y))
 print(len(min_list), len(min_list_y))
 
 #Create min Dataframe
-
 dfmin = pd.DataFrame(data = {'min_x': min_list, 'min_y': min_list_y})
+#Create max Dataframe
 dfmax = pd.DataFrame(data = {'max_x': max_list, 'max_y': max_list_y})
 
+#Plot point cloud of min and max
 ax = dfmin.plot.scatter(x="min_x", y="min_y", c="DarkBlue")
 dfmax.plot.scatter(x="max_x", y="max_y", c="green", ax=ax)
-#Create max Dataframe
-
-# data.iloc[0:1000].plot(y = ["Current",  "CurrentMA", "CurrentMA10"], use_index=True)
 plt.show()
 
+
+#Correlation between variables
 corr = data.corr()
 fig = plt.figure()
 ax = fig.add_subplot(111)
@@ -88,5 +91,5 @@ ax.set_yticks(ticks)
 ax.set_xticklabels(data.columns)
 ax.set_yticklabels(data.columns)
 plt.show()
-corr.head
+
 
