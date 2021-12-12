@@ -7,7 +7,7 @@ import tensorflow as tf
 
 WINDOW_SIZE=250
 
-data_og = pd.read_csv("Data/TestingData/testing2.csv", header=0, sep=';', usecols=["Current"])
+data_og = pd.read_csv("Data/TestingData/testing3.csv", header=0, sep=';', usecols=["Current"])
 data = data_og.to_numpy()
 # a= 37000
 # b= 370601 + WINDOW_SIZE
